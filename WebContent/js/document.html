@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+
+window.addEventListener("load",function(e){
+	var p1 = document.getElementById("p1");
+	var runBtn = document.getElementById("run-button");
+	
+	
+	runBtn.onclick= function(){
+/* 		alert(p1.previousSibling.nodeType);
+		alert(p1.previousSibling.nodeName); */
+		//var inputs= p1.getElementsByTagName("input");
+		//inputs[0].value = "오케바리";
+		//var input = document.querySelector("#p1>input:first-child"); //배열 선택
+		//input.value="오케바리";
+		var inputs = document.querySelectorAll("#p1>input"); //
+		inputs[0].value="오케바리";
+		
+/* 		for(var i in inputs)
+			inputs[i].value="오베카리"+(i+1); */
+	};
+
+});
+window.addEventListener("load", function() {
+	var srcText=document.querySelector("#src-text");
+	var brText=document.querySelector("#border-text");
+	var changeBtn=document.querySelector("#change-button");
+	var img=document.querySelector("#img1");
+	
+	
+ 	var borderColor=document.querySelector("#border-color");
+	var borderWidth=document.querySelector("#border-width");
+	var borderStyle=document.querySelector("#border-style");
+	
+	changeBtn.onclick=function(){
+		img.src="images/"+srcText.value;
+		img.style.border=brText.value;
+		img.style["border-color"]=borderColor.value;
+		img.style["border-width"]=borderWidth.value;
+		img.style["border-style"]=borderStyle.value;
+/* 		img.style.borderColor=borderColor.value;
+		img.style.borderWidth=borderWidth.value;
+		img.style.borderStyle=borderStyle.value; */
+	};
+
+});
+
+window.addEventListener("load",function(e){
+	var addBtn = document.querySelector("#add-button");
+	var delBtn = document.querySelector("#delete-button");
+	var cloneBtn = document.querySelector("#clone-button");
+	var downBtn = document.querySelector("#down-button");
+	var cursor=document.querySelector("#cursor");
+	var container=document.querySelector("#container");
+	
+	
+	addBtn.onclick= function(){
+		var img=document.createElement("img");
+		//이미지 속성/ 스타일 설정
+		img.src="images/duga38.jpg";
+		img.style.width="100px";
+		// 노드를 Document에 추가하기
+		container.appendChild(img)
+	};
+	
+	delBtn.onclick= function(){
+		var last=container.querySelector("img:last-child");
+		
+		container.removeChild(last);
+	};
+	
+	cloneBtn.onclick= function(){
+		var clone=container.cloneNode(true);
+		
+		container.parentNode.appendChild(clone);
+	};
+	
+	
+	downBtn.onclick= function(){
+		var parent=container.parentElement;
+		var target=cursor.nextElementSibling;
+		
+		var old=parent.replaceChild(cursor, target);
+		
+		parent.insertBefore(old, cursor);
+			
+	};
+	
+});
+
+
+</script>
+</head>
+<body>
+
+<input id="add-button" type="button" value="이미지 추가" />
+<input id="delete-button" type="button" value="이미지 삭제" />
+<input id="clone-button" type="button" value="통째로 복사" />
+<input id="down-button" type="button" value="밑으로 내리기" />
+<div>
+	<div id="cursor">
+	방귀낀놈 
+	</div>
+	<div id="container">
+	</div>
+</div>
+
+
+<hr/>
+
+   images/<input id="src-text" value="duga38.jpg" /><br/>
+   경계선 : <input id="border-text" value="3px solid #979797"/><br/>
+   경계 두께 : <input id="border-width" value="3px"/><br/>
+   경계스타일 : <input id="border-style" value="solid"/><br/>
+   경계 색 :<select id="border-color">
+        <OPTION style="background: red" VALUE=red>red</OPTION>
+        <OPTION style="background: green" VALUE=green>green</OPTION>
+        <OPTION style="background: gold" VALUE=gold>gold</OPTION>
+        <OPTION style="background: black" VALUE=black>black</OPTION>
+        <OPTION style="background: blue" VALUE=blue>blue</OPTION>
+  			  </select><br/>
+   <input id="change-button" type="button"  value="변경" /><br/>
+   <img id="img1" src="images/duga38.jpg" />   
+
+<hr/>
+	<input id="run-button" type="button" value="실행"/>
+   <div>
+      <font>font</font>
+      <input />
+   </div>
+   <form id="p1">
+         test1
+      <input />
+      <input />
+     </form>
+    test2
+   <p>
+   	para
+   </p>
+   hello
+   <!-- 오마이 갓 뚜-->
+</body>
+</html>
